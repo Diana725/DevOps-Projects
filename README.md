@@ -4,7 +4,7 @@ This repo is a collection of projects that I have worked on in the course of my 
 ## HERE ARE SOME OF THE PROJECTS FEATURED
 
 * [Deploying Laravel Applications](https://github.com/Diana725/DevOps-Projects/blob/main/Deploying%20Laravel%20Applications.md)
-* Deploying React Applications
+* [Deploying React Applications](https://github.com/Diana725/DevOps-Projects/blob/main/Deploying%20React%20Applications.md)
 * Setting Up Email Queues
 * Using RSYNC
 * Web Server

@@ -1,4 +1,4 @@
-# DevOps Projects I Implemented In My Time as an Intern
+# DevOps Projects
 
 This repo is a collection of projects that I have worked on in the course of my DevOps internship at Oaknet Business. As such, it'll feature detailed step by step solutions to some of the most common DevOps problems, which I hope will help anyone looking to join, or is already in this field. 
 ## HERE ARE SOME OF THE PROJECTS FEATURED

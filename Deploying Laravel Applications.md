@@ -17,7 +17,6 @@ Apache HTTP server is the most popular web server in the world. It is a free, op
 ```
 sudo apt-get update
 sudo apt-get install apache2
-sudo a2enmod rewrite
 ```
 
 In my experience with installing Apache2 on an Ubuntu server, I found that the latest PHP version, PHP 8.1, includes an Apache2 module. In this case, its best to simply install PHP without having to go through the Apache2 installation process above.
@@ -53,16 +52,16 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$PASSWOR
 ```
 ## Step 3: Install PHP
 If you had already installed PHP when installing the Apache2 module, skip this step.
-To install PHP and its dependancies, run:
+Otherwise, you can install PHP and its dependancies by running:
 ```
 sudo apt-get install php7.4
-apt-get install php8.1-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm}
+sudo apt-get install php8.1-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm}
 ```
 Its important to ensure you're working with the correct PHP version, and you can confirm this by running:
 ```
 php -v
 ```
-If for you already had another version of PHP running, say PHP 8.2, and you want to change it to your desired version, you can do this using the following commands:
+If you already had another version of PHP running, say PHP 8.2, and you want to change it to your desired version, you can do this using the following commands:
 ```
 sudo a2dismod php8.2
 sudo a2enmod php7.4
@@ -85,8 +84,119 @@ sudo service apache2 restart
 ```
 ## Step 5: Clone your Github or Gitlab repository
 
-To get your application on the Ubuntu server, you'll need to clone it from github or gitlab. you can do this by using ````git clone```` followed by the ssh link to the repository. You can also specify the brach that you want to clone from using ````git clone -b (branchname)```` followed by the repository's ssh link.
+To get your application on the Ubuntu server, you'll need to clone it from github or gitlab. You can do this by using ````git clone```` followed by the ssh link to the repository. You can also specify the branch that you want to clone from using ````git clone -b (branchname)```` followed by the repository's ssh link.
 
 ## Step 6: Install Composer
 
-Composer is a depe
+Composer is a dependency management tool for PHP and was created mainly to facilitate installation and updates for project dependencies. It is a tool that determines the required packages and installs it on your system using the right version based on the project's need. Also, depending on the version of composer that we need, we will have to install php version that is compatible with it. NB - Composer is installed into the folder of the project. In my case the folder of my project was cloned into /var/www/investments-diana
+
+```
+cd /var/www/investments-diana
+sudo apt-get install composer
+composer install
+```
+## Step 7: Link Storage to Public Disk
+The ````public```` disk included in your application's filesystems configuration file is intended for files that are going to be publicly accessible. By default, the ````public```` disk uses the local driver and stores it in ````storage/app/public```` To make these files accessible from the web, you should create a symbolic link from ````public/storage```` to ````storage/app/public````.
+Use the command below:
+```
+php artisan storage:link
+```
+## Step 8: Change Folder Ownerships and File Permissions
+Use the following commands to change folder ownership:
+```
+cd ..
+chown -R www-data:www-data investments-diana
+```
+Next, use the folowing command to change file permissions:
+
+```
+cd investments-diana
+chown -R 755 bootsrap/ public/ storage/
+```
+## Step 9: Create Database
+To create a database for you application, use these commands:
+
+```
+mysql -u root -p
+create database investmentsdiana;
+exit
+```
+## Step 10: Update the .env file
+Now, you have to update the .env file by adding database name, app name, gmail credentials, and app url
+Start by using 
+```
+cp .env.example .env
+```
+Then use a file editor to make the necessary changes using:
+```
+sudo nano .env
+```
+## Step 11: Populate Your Database
+
+Use the following commands to populate your database:
+```
+php artisan migrate
+php artisan key:generate
+```
+## Step 12: Serve on Apache
+
+In this step, you'll have to create a file in the sites-available folder. Use:
+```
+sudo nano /etc/apache2/sites-available/investments-diana.conf
+```
+Then, add these configurations:
+```
+       # The ServerName directive sets the request scheme, hostname and port that
+       # the server uses to identify itself. This is used when creating
+       # redirection URLs. In the context of virtual hosts, the ServerName
+       # specifies what hostname must appear in the request's Host: header to
+       # match this virtual host. For the default virtual host (this file) this
+       # value is not decisive as it is used as a last resort host regardless.
+       # However, you must set it for any further virtual host explicitly.
+       #ServerName www.example.com
+
+       ServerAdmin webmaster@localhost
+       DocumentRoot /var/www/investments-diana/public
+
+       DirectoryIndex index.php
+
+       <Directory /var/www/investments-diana/public>
+               Options Indexes FollowSymlinks Multiviews
+               Require all granted
+               AllowOverride All
+               RewriteEngine On
+               RewriteBase /var/www/investments-diana/public
+
+       </Directory>
+       # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+       # error, crit, alert, emerg.
+       # It is also possible to configure the loglevel for particular
+       # modules, e.g.
+       #LogLevel info ssl:warn
+
+       ErrorLog ${APACHE_LOG_DIR}/error.log
+       CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+       # For most configuration files from conf-available/, which are
+       # enabled or disabled at a global level, it is possible to
+       # include a line for only one particular virtual host. For example the
+       # following line enables the CGI configuration for this host only
+       # after it has been globally disabled with "a2disconf".
+       #Include conf-available/serve-cgi-bin.conf
+</VirtualHost>
+```
+## Step 13: Enable the Apache Configuration File:
+
+Use the following commands to enable the confiuration files that you just created:
+```
+sudo a2ensite investments-diana.conf
+sudo service apache2 restart
+```
+## Step 14: Enable Ports
+Enable the port that you want to set up your listener on. You can do this by navigating to the ports.conf file using:
+```
+sudo nano /etc/apache2/ports.conf
+```
+and adding ````Listen 10000```` ( I used port 10000 in this case)
+## FINISH
+Once you're done with all these steps, copy your server's ip address and search it up using a browser to load your Laravel Application. The page should look like this:

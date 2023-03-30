@@ -30,4 +30,47 @@ To install a specific version of node:
 nvm install 12.18.3
 ```
 You can choose any other version to install using the above command.
-## Step 4: 
+## Step 4: Serve on Apache
+
+In this step, you'll have to create a file in the sites-available folder. Use:
+```
+sudo nano /etc/apache2/sites-available/filename.conf
+```
+Then, add these configurations:
+```
+VirtualHost *:9005>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/projectdirectory/build
+        DirectoryIndex index.html
+        <Directory /var/www/projectdirectory/build>
+                RewriteEngine On
+                RewriteBase/var/www/projectdirectory/build
+                RewriteRule ^index.html$ - [L]
+                RewriteCond %{REQUEST_FILENAME} !-d
+                RewriteCond %{REQUEST_FILENAME} !-f
+                RewriteRule . /index.html [L]
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+## Step 5: Enable the Apache Configuration File:
+
+Use the following commands to enable the confiuration files that you just created:
+```
+sudo a2ensite filename.conf
+sudo service apache2 restart
+```
+## Step 6: Enable Ports
+Enable the port that you want to set up your listener on. You can do this by navigating to the ports.conf file using:
+```
+sudo nano /etc/apache2/ports.conf
+```
+and adding ````Listen 10000```` ( I used port 10000 in this case)
+## Step 7: Build your Application using NPM
+Run the following command to build:
+```
+npm run build
+```
+## FINISH
+Once you're done with all these steps, copy your server's ip address and search it up using a browser to load your Laravel Application. The page should look like this:

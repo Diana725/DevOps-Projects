@@ -25,8 +25,8 @@ Here are the commands to go about this process:
 sudo apt update
 sudo apt -y install software-properties-common 
 sudo add-apt-repository ppa:ondrej/php
-apt update
-apt-get install php8.1
+sudo apt update
+sudo apt-get install php8.1
 ```
 Then, you can use the command below to install the necessary PHP 8.1 dependencies:
 ```
@@ -125,7 +125,7 @@ exit
 Now, you have to update the .env file by adding database name, app name, gmail credentials, and app url
 Start by using 
 ```
-cp .env.example .env
+sudo cp .env.example .env
 ```
 Then use a file editor to make the necessary changes using:
 ```

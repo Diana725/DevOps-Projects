@@ -55,15 +55,15 @@ If you had already installed PHP when installing the Apache2 module, skip this s
 Otherwise, you can install PHP and its dependancies by running:
 ```
 sudo apt-get install php7.4
-sudo apt-get install php8.1-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm}
+sudo apt-get install php7.4-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm}
 ```
 Its important to ensure you're working with the correct PHP version, and you can confirm this by running:
 ```
 php -v
 ```
-If you already had another version of PHP running, say PHP 8.2, and you want to change it to your desired version, you can do this using the following commands:
+If you already had another version of PHP running, say PHP 8.1, and you want to change it to your desired version, you can do this using the following commands:
 ```
-sudo a2dismod php8.2
+sudo a2dismod php8.1
 sudo a2enmod php7.4
 sudo update-alternatives --set php /usr/bin/php7.4
 ```

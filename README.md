@@ -7,7 +7,6 @@ This repo is a collection of projects that I have worked on in the course of my 
 * [Deploying React Applications](https://github.com/Diana725/DevOps-Projects/blob/main/Deploying%20React%20Applications.md)
 * [Setting Up Email Queues](https://github.com/Diana725/DevOps-Projects/blob/main/Setting%20Up%20Email%20Queues.md)
 * [Using RSYNC](https://github.com/Diana725/DevOps-Projects/blob/main/Using%20RSYNC.md)
-* Using mysqldump
 * [Web Server](https://github.com/Diana725/DevOps-Projects/blob/main/Web%20Server.md)
 * [Creating a CI/CD Pipeline for Laravel Applications](https://github.com/Diana725/DevOps-Projects/blob/main/Creating%20a%20CICD%20Pipeline%20for%20Laravel%20Applications.md)
 * [Creating a CI/CD Pipeline for React Applications](https://github.com/Diana725/DevOps-Projects/blob/main/Creating%20a%20CICD%20Pipeline%20for%20React%20Applications.md)

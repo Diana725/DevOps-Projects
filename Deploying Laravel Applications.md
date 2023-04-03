@@ -111,7 +111,7 @@ Next, use the folowing command to change file permissions:
 
 ```
 cd investments-diana
-sudo chown -R 755 bootsrap/ public/ storage/
+sudo chown -R 755 bootstrap/ public/ storage/
 ```
 ## Step 9: Create Database
 To create a database for you application, use these commands:

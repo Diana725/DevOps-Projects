@@ -105,13 +105,13 @@ php artisan storage:link
 Use the following commands to change folder ownership:
 ```
 cd ..
-chown -R www-data:www-data investments-diana
+sudo chown -R www-data:www-data investments-diana
 ```
 Next, use the folowing command to change file permissions:
 
 ```
 cd investments-diana
-chown -R 755 bootsrap/ public/ storage/
+sudo chown -R 755 bootsrap/ public/ storage/
 ```
 ## Step 9: Create Database
 To create a database for you application, use these commands:

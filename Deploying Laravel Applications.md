@@ -144,8 +144,9 @@ In this step, you'll have to create a file in the sites-available folder. Use:
 ```
 sudo nano /etc/apache2/sites-available/investments-diana.conf
 ```
-Then, add these configurations:
+Then, add these configurations (Note that I have set the port number as my own port number, you can change this to suit your preference):
 ```
+<VirtualHost *:9006>
        # The ServerName directive sets the request scheme, hostname and port that
        # the server uses to identify itself. This is used when creating
        # redirection URLs. In the context of virtual hosts, the ServerName
@@ -197,6 +198,7 @@ Enable the port that you want to set up your listener on. You can do this by nav
 ```
 sudo nano /etc/apache2/ports.conf
 ```
-and adding ````Listen 10000```` ( I used port 10000 in this case)
+and adding ````Listen 9006```` ( I used port 9006 in this case)
 ## FINISH
 Once you're done with all these steps, copy your server's ip address and search it up using a browser to load your Laravel Application. The page should look like this:
+![Laravel](https://user-images.githubusercontent.com/122386130/229452379-5ffcd67e-cb2d-427e-8cd4-b7c8770d691d.PNG)

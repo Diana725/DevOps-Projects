@@ -135,8 +135,8 @@ sudo nano .env
 
 Use the following commands to populate your database:
 ```
-php artisan migrate
-php artisan key:generate
+sudo php artisan migrate
+sudo php artisan key:generate
 ```
 ## Step 12: Serve on Apache
 

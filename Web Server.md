@@ -45,6 +45,7 @@ Finally turn on the firewall. Use the command:
 ```
 sudo ufw enable
 ```
+If you're using an aws server, you can set firewall rules as security groups, and set outbound rules to any destination while restricting in bound rules to SSH and HTTP.
 ## Apache2
 Apache2 is an open-source HTTP server. It is installed with the following command.
 ```
@@ -54,7 +55,10 @@ To confirm that apache2 is installed correctly run
 ```
 sudo service apache2 restart
 ```
-Then using a web browser go to the address of that server. i.e ````http://192.168.1.123/```` It should display the following on your web page:
+Then using a web browser go to the address of that server. i.e ````http://34.232.76.191/```` It should display the following on your web page:
+
+![Apache2](https://user-images.githubusercontent.com/122386130/229458397-26fee345-3ee4-4e84-9b9c-226ef3d7426c.PNG)
+
 ## MySQL
 MySQL is a database where data for the website is stored. To get MySQL installed use the command:
 ```
@@ -68,3 +72,6 @@ sudo apt-get install php libapache2-mod-php php-mysql
 From here, follow instructions on the [Deploying Laravel Application](https://github.com/Diana725/DevOps-Projects/blob/main/Deploying%20Laravel%20Applications.md) to finish setting up the web application.
 
 When the web application is up and running, it should display:
+![Laravel2](https://user-images.githubusercontent.com/122386130/229482313-eb0e0797-1237-4569-8fef-e64f20ab2168.PNG)
+![Laravel3](https://user-images.githubusercontent.com/122386130/229482586-d84fb82b-e16c-497e-bde5-481e365410b4.PNG)
+

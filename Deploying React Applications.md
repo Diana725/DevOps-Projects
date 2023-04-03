@@ -66,11 +66,11 @@ Enable the port that you want to set up your listener on. You can do this by nav
 ```
 sudo nano /etc/apache2/ports.conf
 ```
-and adding ````Listen 10000```` ( I used port 10000 in this case)
+and adding ````Listen 9005```` ( I used port 9005 in the filename.conf file)
 ## Step 7: Build your Application using NPM
 Run the following command to build:
 ```
 npm run build
 ```
 ## FINISH
-Once you're done with all these steps, copy your server's ip address and search it up using a browser to load your Laravel Application. The page should look like this:
+Once you're done with all these steps, copy your server's ip address and search it up using a browser to load your React Application. The page should look like a normal website in the case of a frontend deployment.

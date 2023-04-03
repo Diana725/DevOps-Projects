@@ -30,7 +30,7 @@ apt-get install php8.1
 ```
 Then, you can use the command below to install the necessary PHP 8.1 dependencies:
 ```
-apt-get install php8.1-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm,gd}
+sudo apt-get install php8.1-{BCMath,Ctype,curl,DOM,Fileinfo,Mbstring,PDO,Tokenizer,XML,zip,mysql,fpm,gd}
 ```
 No matter which of the above options you use to install Apache2, you'll need to enable the Apache mod_rewrite module using this command:
 ```
@@ -42,7 +42,7 @@ Next, we'll install MySQL on the server. This is done because Laravel uses MySQL
 
 Install and connect to MySQL using the commands below:
 ```
-apt-get install mysql-server
+sudo apt-get install mysql-server
 sudo mysql -u root -p
 ```
 Once logged into MySQL, type in the following commands to set the new password for the root user (replace the $PASSWORD field with your desired password);
